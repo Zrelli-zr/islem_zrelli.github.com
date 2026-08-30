@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  This is a baseline sitemap containing just the homepage.
+  Your photos are stored in Supabase, not as static files, so this file can't
+  know about them ahead of time. Instead: open the site, trigger the admin
+  panel (click "I. Z." 10x), and click "Export sitemap.xml" — that downloads
+  a complete, up-to-date sitemap including every published photo's URL.
+  Re-run it any time you add, remove, or unpublish a photo, and commit the
+  downloaded file over this one.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://zrelli-zr.github.io/islem_zrelli.github.com/</loc>
+    <priority>1.0</priority>
+  </url>
+</urlset>
