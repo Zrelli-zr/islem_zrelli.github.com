@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Islem Zrelli — Redirecting…</title>
+<meta name="robots" content="noindex">
+<style>html,body{background:#050505;color:#f6f4ef;font-family:sans-serif;height:100%;margin:0;display:flex;align-items:center;justify-content:center;}</style>
+<script>
+  // GitHub Pages is a static host with no server-side routing, so a direct
+  // visit / refresh / shared link to a client-side route like
+  // /islem_zrelli.github.com/work/some-photo/ has no matching file and lands
+  // here. Bounce it back to index.html with the intended path preserved in
+  // ?redirect=, so the app's JS can restore that exact photo.
+  var BASE = '/islem_zrelli.github.com';
+  var path = window.location.pathname.slice(BASE.length) || '/';
+  window.location.replace(BASE + '/?redirect=' + encodeURIComponent(path + window.location.search + window.location.hash));
+</script>
+</head>
+<body>
+  <noscript>Redirecting… if you are not redirected automatically, <a href="/islem_zrelli.github.com/" style="color:#f6f4ef;">click here</a>.</noscript>
+</body>
+</html>
