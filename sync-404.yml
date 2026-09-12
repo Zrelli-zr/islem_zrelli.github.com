@@ -1,0 +1,45 @@
+name: Sync 404.html with index.html
+
+# Why this exists:
+# GitHub Pages is a static host with no server-side rewrites. This site uses
+# client-side (history.pushState) routing for categories/photos, so refreshing
+# on a deep URL like /islem/work/some-photo/ makes the browser request a file
+# that doesn't exist -> GitHub serves its generic 404 page.
+# The fix: 404.html is a byte-for-byte copy of index.html. GitHub Pages serves
+# 404.html for any unmatched path (that's just a convention it understands,
+# no config needed), and since the app already reads window.location.pathname
+# on load, it renders the correct page anyway. This workflow makes sure
+# 404.html never drifts out of sync with index.html so nobody has to
+# remember to copy it by hand after future edits.
+
+on:
+  push:
+    branches: [main]   # change this if your default branch has a different name
+    paths:
+      - 'index.html'
+
+# Needed so the workflow can commit the updated 404.html back to the repo.
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Copy index.html over 404.html
+        run: cp index.html 404.html
+
+      - name: Commit 404.html if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add 404.html
+          if git diff --cached --quiet; then
+            echo "404.html already matches index.html — nothing to commit."
+          else
+            git commit -m "chore: sync 404.html with index.html [skip ci]"
+            git push
+          fi
